@@ -1,6 +1,7 @@
 package com.moda.loja.tendencia.controller;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -8,6 +9,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -26,8 +28,10 @@ public class PecasController {
 	
 	@PostMapping(value = "/inserir-item")
 	public ResponseEntity<Object> insertItem(@RequestBody Pecas pecas){
+		
 		service.insertItem(pecas);
 		return ResponseEntity.status(HttpStatus.CREATED).body("pecas inseridas com sucesso");
+		
 	}
 	
 	@GetMapping(value = "/itens")
@@ -39,6 +43,15 @@ public class PecasController {
 		PageRequest pageRequest = PageRequest.of(page, size);
 		Page<Pecas> pecas = service.getItens(pageRequest);
 		return ResponseEntity.status(HttpStatus.OK).body(pecas);
+		
+	}
+	
+	@GetMapping(value = "/{id}/item")
+	public ResponseEntity<Optional<Pecas>> getItens(@PathVariable long id){
+		
+		Optional<Pecas> peca = service.getItemById(id);
+		return ResponseEntity.status(HttpStatus.OK).body(peca);
+		
 	}
 	
 }

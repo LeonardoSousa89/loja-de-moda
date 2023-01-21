@@ -16,7 +16,7 @@ DROP TABLE tendencia;
 
 SELECT * FROM tendencia;
 
-INSERT INTO tendencia VALUES(1, 22.3, 'camisa gola polo', 'M', 'azul', 'https://imagem-exemplo.com/vestido');
+INSERT INTO tendencia VALUES(1, 1027.89, 'Vestido de Linho lilás', 'M', 'lilás', 'https://firebasestorage.googleapis.com/v0/b/loja-de-moda-4fa2b.appspot.com/o/moda%2Fvestido_lilas.jpg?alt=media&token=062d8ecd-1590-42e8-b4e6-e4e03ad59b3d');
 
 DELETE FROM tendencia;
 

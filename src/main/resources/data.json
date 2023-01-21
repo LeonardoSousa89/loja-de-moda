@@ -1,23 +1,16 @@
 [
 	{
-		"preco":22.3,
-		"tipo":"camisa gola polo lacoste",
+		"preco":1027.89,
+		"tipo":"Vestido de Linho lilás",
 		"tamanho": "M",
-		"cor":"azul",
-		"image_url":"https://imagem-exemplo.com/camisa"
+		"cor":"lilás",
+		"image_url":"https://firebasestorage.googleapis.com/v0/b/loja-de-moda-4fa2b.appspot.com/o/moda%2Fvestido_lilas.jpg?alt=media&token=062d8ecd-1590-42e8-b4e6-e4e03ad59b3d"
 	},
 	{
-		"preco":37.89,
-		"tipo":"vestido florado duChannel",
-		"tamanho": "P",
-		"cor":"rosa",
-		"image_url":"https://imagem-exemplo.com/vestido"
-	},
-	{
-		"preco":125.58,
-		"tipo":"bermuda jeans calvin klein",
+		"preco":2546.97,
+		"tipo":"conjunto social garcon",
 		"tamanho": "M",
-		"cor":"azul",
-		"image_url":"https://imagem-exemplo.com/bermuda"
+		"cor":"grafite",
+		"image_url":"https://firebasestorage.googleapis.com/v0/b/loja-de-moda-4fa2b.appspot.com/o/moda%2Fconjunto_garcon.jpg?alt=media&token=2451e60a-7c3e-47af-8832-67d961903e34"
 	}
 ]
