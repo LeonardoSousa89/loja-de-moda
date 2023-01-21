@@ -1,18 +1,15 @@
 package com.moda.loja.tendencia.controller;
 
-import java.util.List;
-import java.util.Optional;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Repository;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -25,8 +22,10 @@ import com.moda.loja.tendencia.services.PecasService;
 @RequestMapping(value = "/loja")
 public class PecasController {
 
+	
 	@Autowired
 	private PecasService service;
+	
 	
 	@PostMapping(value = "/inserir-item")
 	public ResponseEntity<Object> insertItem(@RequestBody Pecas pecas){
@@ -35,6 +34,7 @@ public class PecasController {
 		return ResponseEntity.status(HttpStatus.CREATED).body("pecas inseridas com sucesso");
 		
 	}
+	
 	
 	@GetMapping(value = "/itens")
 	public ResponseEntity<Page<Pecas>> getItens(
@@ -48,13 +48,15 @@ public class PecasController {
 		
 	}
 	
+	
 	@GetMapping(value = "/{id}/item")
-	public ResponseEntity<Optional<Pecas>> getItens(@PathVariable long id){
+	public ResponseEntity<Pecas> getItens(@PathVariable long id){
 		
-		Optional<Pecas> peca = service.getItemById(id);
+		Pecas peca = service.getItemById(id);
 		return ResponseEntity.status(HttpStatus.OK).body(peca);
 		
 	}
+	
 	
 	@DeleteMapping(value = "/{id}/deletar-item")
 	public ResponseEntity<Object> deleteItem(@PathVariable long id){
@@ -63,5 +65,15 @@ public class PecasController {
 		return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
 		
 	}
+	
+	
+	@PutMapping("/{id}/alterar-item")
+	public ResponseEntity<Pecas> updatePeca(@PathVariable Long id,@RequestBody Pecas peca) {
+		
+		service.updatePeca(id, peca);
+		return ResponseEntity.status(HttpStatus.CREATED).build();
+		
+	}
+	
 	
 }
