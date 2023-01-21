@@ -1,0 +1,23 @@
+[
+	{
+		"preco":22.3,
+		"tipo":"camisa gola polo lacoste",
+		"tamanho": "M",
+		"cor":"azul",
+		"image_url":"https://imagem-exemplo.com/camisa"
+	},
+	{
+		"preco":37.89,
+		"tipo":"vestido florado duChannel",
+		"tamanho": "P",
+		"cor":"rosa",
+		"image_url":"https://imagem-exemplo.com/vestido"
+	},
+	{
+		"preco":125.58,
+		"tipo":"bermuda jeans calvin klein",
+		"tamanho": "M",
+		"cor":"azul",
+		"image_url":"https://imagem-exemplo.com/bermuda"
+	}
+]

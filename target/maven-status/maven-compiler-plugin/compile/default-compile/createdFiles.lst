@@ -1,0 +1,5 @@
+com\moda\loja\tendencia\TendenciaApplication.class
+com\moda\loja\tendencia\services\PecasService.class
+com\moda\loja\tendencia\controller\PecasController.class
+com\moda\loja\tendencia\repository\PecasRepository.class
+com\moda\loja\tendencia\entities\Pecas.class
