@@ -35,4 +35,8 @@ public class PecasService {
 	
 	}
 	
+	public void deleteItem(long id){
+		repository.deleteById(id);
+	}
+	
 }
