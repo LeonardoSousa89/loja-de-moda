@@ -28,9 +28,9 @@ public class Pecas implements Serializable{
 	public Pecas(long id, double preco, String tipo, String tamanho ,String cor, String image_url) {
 		this.id = id;
 		this.preco = preco;
-		this.tipo = tipo;
-		this.tamanho = tamanho;
-		this.cor = cor;
+		this.tipo = tipo.toLowerCase();
+		this.tamanho = tamanho.toLowerCase();
+		this.cor = cor.toLowerCase();
 		this.image_url = image_url;
 	}
 

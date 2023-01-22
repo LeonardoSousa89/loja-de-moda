@@ -38,12 +38,23 @@ public class PecasService {
 	
 	}
 	
+	/*public Pecas getItemByTamanho(String tamanho){
+		
+		return repository.getItemByTamanho(tamanho);
+		
+	}*/
+	
+	
+	public void deleteAll(){
+		repository.deleteAll();;
+	}
+	
 	
 	public void deleteItem(long id){
 		repository.deleteById(id);
 	}
-	
 
+	
 	private void updateData(Pecas newPeca, Pecas peca) {
 		
 		newPeca.setPreco(peca.getPreco());
