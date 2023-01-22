@@ -14,8 +14,15 @@ public interface PecasRepository extends JpaRepository<Pecas, Long>{
 	Page<Pecas> getItens(org.springframework.data.domain.Pageable pageRequest); 
 	
 	
-	//reescrever a query
-	@Query(nativeQuery = true, value = "SELECT * FROM tendencia")
-	Page<Pecas> getItemByTamanho(String tamanho, org.springframework.data.domain.Pageable pageRequest);
+	@Query(nativeQuery = true, value = "SELECT id, preco, tipo, tamanho, cor, image_url FROM tendencia WHERE tamanho = (:tamanho)")
+	Page<Pecas> getItensBySearchSize(String tamanho, org.springframework.data.domain.Pageable pageRequest);
+	
+	
+	@Query(nativeQuery = true, value = "SELECT id, preco, tipo, tamanho, cor, image_url FROM tendencia WHERE cor = (:cor)")
+	Page<Pecas> getItensBySearchColor(String cor, org.springframework.data.domain.Pageable pageRequest);
+	
+	
+	@Query(nativeQuery = true, value = "SELECT id, preco, tipo, tamanho, cor, image_url FROM tendencia WHERE cor = (:cor) AND tamanho = (:tamanho)")
+	Page<Pecas> getItensBySearchColorAndSize(String cor, String tamanho, org.springframework.data.domain.Pageable pageRequest);
 	
 }

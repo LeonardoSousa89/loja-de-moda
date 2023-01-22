@@ -38,11 +38,29 @@ public class PecasService {
 	
 	}
 	
-	/*public Pecas getItemByTamanho(String tamanho){
+	
+	public Page<Pecas> getItensBySearchSize(String tamanho, PageRequest pageRequest){
 		
-		return repository.getItemByTamanho(tamanho);
+		Page<Pecas> pecas = repository.getItensBySearchSize(tamanho, pageRequest);
+		return pecas;
 		
-	}*/
+	}
+	
+	
+	public Page<Pecas> getItensBySearchColor(String cor, PageRequest pageRequest){
+		
+		Page<Pecas> pecas = repository.getItensBySearchColor(cor, pageRequest);
+		return pecas;
+		
+	}
+	
+	
+	public Page<Pecas> getItensBySearchColorAndSize(String cor, String tamanho, PageRequest pageRequest){
+		
+		Page<Pecas> pecas = repository.getItensBySearchColorAndSize(cor, tamanho, pageRequest);
+		return pecas;
+		
+	}
 	
 	
 	public void deleteAll(){

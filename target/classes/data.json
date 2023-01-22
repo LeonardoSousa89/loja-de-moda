@@ -3,7 +3,7 @@
 		"preco":1027.89,
 		"tipo":"Vestido de Linho lilás",
 		"tamanho": "M",
-		"cor":"lilás",
+		"cor":"lilas",
 		"image_url":"https://firebasestorage.googleapis.com/v0/b/loja-de-moda-4fa2b.appspot.com/o/moda%2Fvestido_lilas.jpg?alt=media&token=062d8ecd-1590-42e8-b4e6-e4e03ad59b3d"
 	},
 	{
@@ -12,5 +12,55 @@
 		"tamanho": "M",
 		"cor":"grafite",
 		"image_url":"https://firebasestorage.googleapis.com/v0/b/loja-de-moda-4fa2b.appspot.com/o/moda%2Fconjunto_garcon.jpg?alt=media&token=2451e60a-7c3e-47af-8832-67d961903e34"
+	},
+	{
+		"preco":1405.68,
+		"tipo":"Vestido Fino",
+		"tamanho": "P",
+		"cor":"verde",
+		"image_url":"https://firebasestorage.googleapis.com/v0/b/loja-de-moda-4fa2b.appspot.com/o/moda%2Fvestido%20fino.jpg?alt=media&token=7eed9ac8-9e21-4637-a9f5-bbaa05512ec2"
+	},
+	{
+		"preco":2604.77,
+		"tipo":"Vestido Florado",
+		"tamanho": "P",
+		"cor":"azul rosado",
+		"image_url":"https://firebasestorage.googleapis.com/v0/b/loja-de-moda-4fa2b.appspot.com/o/moda%2Fvestido%20florado.jpg?alt=media&token=fc20723f-4e4d-41aa-8abf-92d460c2a039"
+	},
+	{
+		"preco":1575.33,
+		"tipo":"Camisa Social",
+		"tamanho": "P",
+		"cor":"branco",
+		"image_url":"https://firebasestorage.googleapis.com/v0/b/loja-de-moda-4fa2b.appspot.com/o/moda%2Fcamisa%20social.jpg?alt=media&token=ec066a0e-53cd-4703-8cac-2e5b76c2c8dc"
+	},
+	{
+		"preco":2356.66,
+		"tipo":"Vestido Bordado",
+		"tamanho": "GG",
+		"cor":"azul",
+		"image_url":"https://firebasestorage.googleapis.com/v0/b/loja-de-moda-4fa2b.appspot.com/o/moda%2Fvestido%20azul%20GG.jpg?alt=media&token=5f567cb9-b548-48c4-a8a5-9c2b53accb63"
+	},
+	{
+		"preco":4251.01,
+		"tipo":"Vestido Chinês",
+		"tamanho": "P",
+		"cor":"branco",
+		"image_url":"https://firebasestorage.googleapis.com/v0/b/loja-de-moda-4fa2b.appspot.com/o/moda%2Fvestido%20chin%C3%AAs.jpg?alt=media&token=7b1c544f-f453-4f42-afd7-1c081a745729"
+	},
+	{
+		"preco":3025.01,
+		"tipo":"Vestido Bordado Algodão",
+		"tamanho": "P",
+		"cor":"vinho",
+		"image_url":"https://firebasestorage.googleapis.com/v0/b/loja-de-moda-4fa2b.appspot.com/o/moda%2Fvestido%20vinho.jpg?alt=media&token=7c674e02-7106-47ce-9610-428cabc1360e"
+	},
+	{
+		"preco":3002.71,
+		"tipo":"Vestido Bordado",
+		"tamanho": "P",
+		"cor":"branco",
+		"image_url":"https://firebasestorage.googleapis.com/v0/b/loja-de-moda-4fa2b.appspot.com/o/moda%2Fvestido%20florado%20azul%20e%20branco.jpg?alt=media&token=4b279399-ff96-43e2-8ae0-21473c091403"
 	}
+	
 ]

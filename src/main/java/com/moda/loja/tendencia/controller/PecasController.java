@@ -39,11 +39,12 @@ public class PecasController {
 	@GetMapping(value = "/itens")
 	public ResponseEntity<Page<Pecas>> getItens(
 			@RequestParam(value = "page",  required = false,  defaultValue = "0") int page, 
-			@RequestParam(value = "size",  required = false, defaultValue = "6") int size
+			@RequestParam(value = "size",  required = false, defaultValue = "12") int size
 			) {
 		
 		PageRequest pageRequest = PageRequest.of(page, size);
 		Page<Pecas> pecas = service.getItens(pageRequest);
+		
 		return ResponseEntity.status(HttpStatus.OK).body(pecas);
 		
 	}
@@ -58,16 +59,47 @@ public class PecasController {
 	}
 	
 	
-	/*@GetMapping(value = "/item/busca-por-tamanho")
-	public ResponseEntity<Pecas> getItemByTamanho(@PathParam(value = "tamanho") String tamanho) {
+	@GetMapping(value = "/item/tamanho/busca")
+	public ResponseEntity<Page<Pecas>> getItensBySearchSize(
+			@RequestParam(value = "tamanho", required = true) String tamanho,
+			@RequestParam(value = "page",    required = false,  defaultValue = "0")  int page
+			) {
 		
-		//teste para verificação de funcionamento do cache
-		//Thread.sleep(3000);
+		PageRequest pageRequest = PageRequest.of(page, 100);
+		Page<Pecas> pecas = service.getItensBySearchSize(tamanho, pageRequest);
 		
-		Pecas peca = service.getItemByTamanho(tamanho);
-		return ResponseEntity.status(HttpStatus.OK).body(peca);
+		return ResponseEntity.status(HttpStatus.OK).body(pecas);
 		
-	}*/
+	}
+	
+	
+	@GetMapping(value = "/item/cor/busca")
+	public ResponseEntity<Page<Pecas>> getItensBySearchColor(
+			@RequestParam(value = "cor", required = true) String cor,
+			@RequestParam(value = "page",    required = false,  defaultValue = "0")  int page
+			) {
+		
+		PageRequest pageRequest = PageRequest.of(page, 100);
+		Page<Pecas> pecas = service.getItensBySearchColor(cor, pageRequest);
+		
+		return ResponseEntity.status(HttpStatus.OK).body(pecas);
+		
+	}
+	
+	
+	@GetMapping(value = "/item/cor-e-tamanho/busca")
+	public ResponseEntity<Page<Pecas>> getItensBySearchColorAndSize(
+			@RequestParam(value = "cor", required = true) String cor,
+			@RequestParam(value = "tamanho", required = true) String tamanho,
+			@RequestParam(value = "page",    required = false,  defaultValue = "0")  int page
+			) {
+		
+		PageRequest pageRequest = PageRequest.of(page, 100);
+		Page<Pecas> pecas = service.getItensBySearchColorAndSize(cor, tamanho, pageRequest);
+		
+		return ResponseEntity.status(HttpStatus.OK).body(pecas);
+		
+	}
 	
 	
 	@DeleteMapping(value = "/deletar-todos-itens")
