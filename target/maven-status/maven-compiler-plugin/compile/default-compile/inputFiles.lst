@@ -1,5 +1,10 @@
+C:\Users\somen\OneDrive\Desktop\backend\loja-de-moda\tendencia\src\main\java\com\moda\loja\tendencia\controller\exceptions\ResourceExceptionHandler.java
 C:\Users\somen\OneDrive\Desktop\backend\loja-de-moda\tendencia\src\main\java\com\moda\loja\tendencia\TendenciaApplication.java
+C:\Users\somen\OneDrive\Desktop\backend\loja-de-moda\tendencia\src\main\java\com\moda\loja\tendencia\controller\exceptions\StandardError.java
 C:\Users\somen\OneDrive\Desktop\backend\loja-de-moda\tendencia\src\main\java\com\moda\loja\tendencia\controller\PecasController.java
 C:\Users\somen\OneDrive\Desktop\backend\loja-de-moda\tendencia\src\main\java\com\moda\loja\tendencia\services\PecasService.java
 C:\Users\somen\OneDrive\Desktop\backend\loja-de-moda\tendencia\src\main\java\com\moda\loja\tendencia\repository\PecasRepository.java
+C:\Users\somen\OneDrive\Desktop\backend\loja-de-moda\tendencia\src\main\java\com\moda\loja\tendencia\config\CorsConfig.java
+C:\Users\somen\OneDrive\Desktop\backend\loja-de-moda\tendencia\src\main\java\com\moda\loja\tendencia\services\exceptions\ResourceBadRequestException.java
 C:\Users\somen\OneDrive\Desktop\backend\loja-de-moda\tendencia\src\main\java\com\moda\loja\tendencia\entities\Pecas.java
+C:\Users\somen\OneDrive\Desktop\backend\loja-de-moda\tendencia\src\main\java\com\moda\loja\tendencia\services\exceptions\ResourceNotFoundException.java
