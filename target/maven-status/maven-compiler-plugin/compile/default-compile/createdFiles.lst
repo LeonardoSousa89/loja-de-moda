@@ -8,3 +8,4 @@ com\moda\loja\tendencia\controller\exceptions\ResourceExceptionHandler.class
 com\moda\loja\tendencia\controller\exceptions\StandardError.class
 com\moda\loja\tendencia\repository\PecasRepository.class
 com\moda\loja\tendencia\services\exceptions\ResourceNotFoundException.class
+com\moda\loja\tendencia\DTO\PecasDTO.class

@@ -1,9 +1,12 @@
  pipeline {
-
+	
+	
     agent any 
-
+	
+	
     //read the doc: https://www.jenkins.io/doc/book/pipeline/docker/
     stages {
+        
         
         stage('Build Image') {
             steps {
@@ -12,7 +15,8 @@
                 }
             }
         }
-
+		
+		
         //DOCKERHUB** reference a credentials saved in manager credentials in jenkins
         stage('push Image') {
             steps {
@@ -26,13 +30,12 @@
         }
 		
 		
-		//teste de CI/CD
         stage('Deploy Container Image on Server') {
             steps {
-                sh 'docker run -d -p 8766:8766 --memory 256M --cpus=0.2  --name moda -e DB=jdbc:postgresql://loja-de-moda.c6vumhpkhe4g.us-east-1.rds.amazonaws.com:5432/moda -e USER_DB=postgres -e PASSWORD_DB=12345678 leozin89/loja_de_moda:latest'
+                sh 'docker run -d -p 8766:8766 --memory 256M --cpus=0.2  --name moda -e DB=your_db -e USER_DB=your_user_db -e PASSWORD_DB=your_password_db leozin89/loja_de_moda:latest'
             }
         }
-
+		
         
     }
 }

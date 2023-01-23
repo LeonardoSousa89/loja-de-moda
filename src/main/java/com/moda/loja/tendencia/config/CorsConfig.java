@@ -1,21 +1,5 @@
 package com.moda.loja.tendencia.config;
 
-
-
-
-
-public class CorsConfig {
-	/*
-	 * excluir esta classe e liberar tudo abaixo 
-	 * */
-}
-
-
-
-
-
-/*
-
 import java.util.Arrays;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -51,7 +35,6 @@ public class CorsConfig extends WebSecurityConfigurerAdapter {
 	@Bean
 	CorsConfigurationSource corsConfigurationSource() {
 		CorsConfiguration configuration = new CorsConfiguration().applyPermitDefaultValues();
-		configuration.setAllowedOrigins(Arrays.asList("http://localhost:4200"));
 		configuration.setAllowedMethods(Arrays.asList("POST", "GET", "PUT", "DELETE"));
 		final UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
 		source.registerCorsConfiguration("/**", configuration);
@@ -60,5 +43,4 @@ public class CorsConfig extends WebSecurityConfigurerAdapter {
 }
 
 
-*/
 

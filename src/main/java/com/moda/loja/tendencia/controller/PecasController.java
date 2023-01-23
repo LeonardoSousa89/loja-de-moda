@@ -1,5 +1,8 @@
 package com.moda.loja.tendencia.controller;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -15,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.moda.loja.tendencia.DTO.PecasDTO;
 import com.moda.loja.tendencia.entities.Pecas;
 import com.moda.loja.tendencia.services.PecasService;
 
@@ -26,7 +30,6 @@ public class PecasController {
 	@Autowired
 	private PecasService service;
 	
-	
 	@PostMapping(value = "/inserir-item")
 	public ResponseEntity<Object> insertItem(@RequestBody Pecas pecas){
 		
@@ -37,7 +40,7 @@ public class PecasController {
 	
 	
 	@GetMapping(value = "/itens")
-	public ResponseEntity<Page<Pecas>> getItens(
+	public ResponseEntity<List<PecasDTO>> getItens(
 			@RequestParam(value = "page",  required = false,  defaultValue = "0") int page, 
 			@RequestParam(value = "size",  required = false, defaultValue = "12") int size
 			) {
@@ -45,13 +48,15 @@ public class PecasController {
 		PageRequest pageRequest = PageRequest.of(page, size);
 		Page<Pecas> pecas = service.getItens(pageRequest);
 		
-		return ResponseEntity.status(HttpStatus.OK).body(pecas);
+		List<PecasDTO> pecasDTO =  pecas.stream().map(peca ->  new PecasDTO(peca)).collect(Collectors.toList());
+		
+		return ResponseEntity.status(HttpStatus.OK).body(pecasDTO);
 		
 	}
 	
 	
 	@GetMapping(value = "/{id}/item")
-	public ResponseEntity<Pecas> getItemById(@PathVariable long id) throws InterruptedException{
+	public ResponseEntity<Pecas> getItemById(@PathVariable long id) {
 		
 		Pecas peca = service.getItemById(id);
 		return ResponseEntity.status(HttpStatus.OK).body(peca);
@@ -60,7 +65,7 @@ public class PecasController {
 	
 	
 	@GetMapping(value = "/item/tamanho/busca")
-	public ResponseEntity<Page<Pecas>> getItensBySearchSize(
+	public ResponseEntity<List<PecasDTO>> getItensBySearchSize(
 			@RequestParam(value = "tamanho", required = true) String tamanho,
 			@RequestParam(value = "page",    required = false,  defaultValue = "0")  int page
 			) {
@@ -68,13 +73,15 @@ public class PecasController {
 		PageRequest pageRequest = PageRequest.of(page, 100);
 		Page<Pecas> pecas = service.getItensBySearchSize(tamanho, pageRequest);
 		
-		return ResponseEntity.status(HttpStatus.OK).body(pecas);
+		List<PecasDTO> pecasDTO = pecas.stream().map(peca -> new PecasDTO(peca)).collect(Collectors.toList());
+		
+		return ResponseEntity.status(HttpStatus.OK).body(pecasDTO);
 		
 	}
 	
 	
 	@GetMapping(value = "/item/cor/busca")
-	public ResponseEntity<Page<Pecas>> getItensBySearchColor(
+	public ResponseEntity<List<PecasDTO>> getItensBySearchColor(
 			@RequestParam(value = "cor", required = true) String cor,
 			@RequestParam(value = "page",    required = false,  defaultValue = "0")  int page
 			) {
@@ -82,13 +89,15 @@ public class PecasController {
 		PageRequest pageRequest = PageRequest.of(page, 100);
 		Page<Pecas> pecas = service.getItensBySearchColor(cor, pageRequest);
 		
-		return ResponseEntity.status(HttpStatus.OK).body(pecas);
+		List<PecasDTO> pecasDTO = pecas.stream().map(peca -> new PecasDTO(peca)).collect(Collectors.toList());
+		
+		return ResponseEntity.status(HttpStatus.OK).body(pecasDTO);
 		
 	}
 	
 	
 	@GetMapping(value = "/item/cor-e-tamanho/busca")
-	public ResponseEntity<Page<Pecas>> getItensBySearchColorAndSize(
+	public ResponseEntity<List<PecasDTO>> getItensBySearchColorAndSize(
 			@RequestParam(value = "cor", required = true) String cor,
 			@RequestParam(value = "tamanho", required = true) String tamanho,
 			@RequestParam(value = "page",    required = false,  defaultValue = "0")  int page
@@ -97,7 +106,9 @@ public class PecasController {
 		PageRequest pageRequest = PageRequest.of(page, 100);
 		Page<Pecas> pecas = service.getItensBySearchColorAndSize(cor, tamanho, pageRequest);
 		
-		return ResponseEntity.status(HttpStatus.OK).body(pecas);
+		List<PecasDTO> pecasDTO = pecas.stream().map(peca -> new PecasDTO(peca)).collect(Collectors.toList());
+		
+		return ResponseEntity.status(HttpStatus.OK).body(pecasDTO);
 		
 	}
 	
