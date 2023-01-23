@@ -3,6 +3,7 @@ package com.moda.loja.tendencia.services;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.stereotype.Service;
 
 import com.moda.loja.tendencia.entities.Pecas;
@@ -24,7 +25,8 @@ public class PecasService {
 			
 			return repository.save(pecas);
 			
-		}catch (Exception e) {
+		}
+		catch (Exception e) {
 			
 			throw new ResourceBadRequestException("Desculpe, Houve um erro ao processar as informações");
 			

@@ -17,13 +17,22 @@ public class PecasDTO implements Serializable{
 
 	public PecasDTO() {}
 	
+	public PecasDTO(long id, double preco, String tipo, String tamanho, String cor, String image_url) {
+		this.id = id;
+		this.preco = preco;
+		this.tipo = tipo;
+		this.tamanho = tamanho;
+		this.cor = cor;
+		this.image_url = image_url;
+	}
+
 	public PecasDTO(Pecas peca) {
-		this.id = peca.getId();
-		this.preco = peca.getPreco();
-		this.tipo = peca.getTipo();
-		this.tamanho = peca.getTamanho();
-		this.cor = peca.getCor();
-		this.image_url = peca.getImage_url();
+		id = peca.getId();
+		preco = peca.getPreco();
+		tipo = peca.getTipo();
+		tamanho = peca.getTamanho();
+		cor = peca.getCor();
+		image_url = peca.getImage_url();
 	}
 	
 	public long getId() {

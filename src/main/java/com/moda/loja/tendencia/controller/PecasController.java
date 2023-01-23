@@ -30,11 +30,13 @@ public class PecasController {
 	@Autowired
 	private PecasService service;
 	
+	
 	@PostMapping(value = "/inserir-item")
 	public ResponseEntity<Object> insertItem(@RequestBody Pecas pecas){
-		
-		service.insertItem(pecas);
-		return ResponseEntity.status(HttpStatus.CREATED).body("pecas inseridas com sucesso");
+			
+			service.insertItem(pecas);
+			
+			return ResponseEntity.status(HttpStatus.CREATED).body("Item adicionado com sucesso");
 		
 	}
 	
@@ -56,10 +58,13 @@ public class PecasController {
 	
 	
 	@GetMapping(value = "/{id}/item")
-	public ResponseEntity<Pecas> getItemById(@PathVariable long id) {
+	public ResponseEntity<PecasDTO> getItemById(@PathVariable long id) {
 		
 		Pecas peca = service.getItemById(id);
-		return ResponseEntity.status(HttpStatus.OK).body(peca);
+		
+		PecasDTO pecasDTO = new PecasDTO(peca);
+		
+		return ResponseEntity.status(HttpStatus.OK).body(pecasDTO);
 		
 	}
 	

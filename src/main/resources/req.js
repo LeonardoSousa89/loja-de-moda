@@ -1,7 +1,7 @@
 
 //script para testes de requisição
 
-fetch('http://127.0.0.1:8766/loja/itens?page=1&size=5',{ method: 'GET' })
+fetch('http://127.0.0.1:8766/loja/itens?page=0&size=5',{ method: 'GET' })
 	.then(resp=>{
 		
 		if(resp.status === 200){
