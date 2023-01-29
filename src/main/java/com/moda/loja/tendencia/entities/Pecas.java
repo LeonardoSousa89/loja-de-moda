@@ -18,17 +18,22 @@ public class Pecas implements Serializable{
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 	private double preco;
-	private String tipo;
+	private String peca;
+	private String categoria;
+	private String descricao;
 	private String tamanho;
 	private String cor;
 	private String image_url;
 
 	public Pecas() {}
-	
-	public Pecas(long id, double preco, String tipo, String tamanho ,String cor, String image_url) {
+
+	public Pecas(long id, double preco, String peca, String categoria, String descricao, String tamanho, String cor,
+			String image_url) {
 		this.id = id;
 		this.preco = preco;
-		this.tipo = tipo;
+		this.peca = peca;
+		this.categoria = categoria;
+		this.descricao = descricao;
 		this.tamanho = tamanho;
 		this.cor = cor;
 		this.image_url = image_url;
@@ -50,12 +55,28 @@ public class Pecas implements Serializable{
 		this.preco = preco;
 	}
 
-	public String getTipo() {
-		return tipo;
+	public String getPeca() {
+		return peca;
 	}
 
-	public void setTipo(String tipo) {
-		this.tipo = tipo;
+	public void setPeca(String peca) {
+		this.peca = peca;
+	}
+
+	public String getCategoria() {
+		return categoria;
+	}
+
+	public void setCategoria(String categoria) {
+		this.categoria = categoria;
+	}
+
+	public String getDescricao() {
+		return descricao;
+	}
+
+	public void setDescricao(String descricao) {
+		this.descricao = descricao;
 	}
 
 	public String getTamanho() {
@@ -73,7 +94,7 @@ public class Pecas implements Serializable{
 	public void setCor(String cor) {
 		this.cor = cor;
 	}
-	
+
 	public String getImage_url() {
 		return image_url;
 	}
@@ -81,7 +102,7 @@ public class Pecas implements Serializable{
 	public void setImage_url(String image_url) {
 		this.image_url = image_url;
 	}
-	
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;

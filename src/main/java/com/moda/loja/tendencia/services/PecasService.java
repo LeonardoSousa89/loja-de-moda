@@ -7,7 +7,6 @@ import org.springframework.stereotype.Service;
 
 import com.moda.loja.tendencia.entities.Pecas;
 import com.moda.loja.tendencia.repository.PecasRepository;
-import com.moda.loja.tendencia.services.exceptions.ResourceBadRequestException;
 import com.moda.loja.tendencia.services.exceptions.ResourceNotFoundException;
 
 @Service
@@ -27,7 +26,6 @@ public class PecasService {
 	
 	public Page<Pecas> getItens(PageRequest pageRequest) {
 		
-			
 			Page<Pecas> pecas = repository.findAll(pageRequest);
 			
 			if(pecas.isEmpty()) {
@@ -42,7 +40,6 @@ public class PecasService {
 	
 	
 	public Pecas getItemById(long id){
-			
 			
 			try {
 				
@@ -59,10 +56,12 @@ public class PecasService {
 	}
 	
 	
-	public Page<Pecas> getItensBySearchSize(String tamanho, PageRequest pageRequest){
-		
+	
+	//BUSCAS POR QUERY PARAMS **
+	
+	public Page<Pecas> getItensBySearchCategory(String categoria, PageRequest pageRequest){
 			
-			Page<Pecas> pecas = repository.getItensBySearchSize(tamanho, pageRequest);
+			Page<Pecas> pecas = repository.getItensBySearchCategory(categoria, pageRequest);
 			
 			if(pecas.isEmpty()) {
 				
@@ -75,8 +74,37 @@ public class PecasService {
 	}
 	
 	
-	public Page<Pecas> getItensBySearchColor(String cor, PageRequest pageRequest){
+	public Page<Pecas> getItensBySearchDescribe(String descricao, PageRequest pageRequest){
 		
+			Page<Pecas> pecas = repository.getItensBySearchDescribe(descricao, pageRequest);
+			
+			if(pecas.isEmpty()) {
+				
+				throw new ResourceNotFoundException("Dados não encontrados");
+				
+			}
+			
+			return pecas;
+		
+	}
+	
+	
+	public Page<Pecas> getItensBySearchSize(String tamanho, PageRequest pageRequest){
+		
+			Page<Pecas> pecas = repository.getItensBySearchSize(tamanho, pageRequest);
+			
+			if(pecas.isEmpty()) {
+				
+				throw new ResourceNotFoundException("Dados não encontrados");
+				
+			}
+			
+			return pecas;
+	
+	}
+	
+	
+	public Page<Pecas> getItensBySearchColor(String cor, PageRequest pageRequest){
 			
 			Page<Pecas> pecas = repository.getItensBySearchColor(cor, pageRequest);
 			
@@ -91,24 +119,9 @@ public class PecasService {
 	}
 	
 	
-	public Page<Pecas> getItensBySearchColorAndSize(String cor, String tamanho, PageRequest pageRequest){
-			
-			Page<Pecas> pecas = repository.getItensBySearchColorAndSize(cor, tamanho, pageRequest);
-			
-			if(pecas.isEmpty()) {
-				
-				throw new ResourceNotFoundException("Dados não encontrados");
-				
-			}
-			
-			return pecas;
+	public Page<Pecas> getItensBySearchPiece(String peca, PageRequest pageRequest){
 		
-	}
-	
-	
-	public Page<Pecas> getItensBySearchType(String tipo, PageRequest pageRequest){
-			
-			Page<Pecas> pecas = repository.getItensBySearchType(tipo, pageRequest);
+			Page<Pecas> pecas = repository.getItensBySearchPiece(peca, pageRequest);
 			
 			if(pecas.isEmpty()) {
 				
@@ -117,67 +130,63 @@ public class PecasService {
 			}
 			
 			return pecas;
-			
+	
 	}
+	
+	//BUSCAS POR QUERY PARAMS **
+	
 	
 	
 	public void deleteAll(){
 		
-		try {
-			
-			repository.deleteAll();
-			
-		}catch (Exception e) {
-			
-			throw new ResourceBadRequestException("Desculpe, Ocorreu um erro não previsto");
-			
-		}
-		
+				repository.deleteAll();
 	}
 	
 	
 	public void deleteItem(long id){
 		
-		try {
-		
-			repository.deleteById(id);
+			try {
 			
-		}catch (Exception e) {
-			
-			throw new ResourceNotFoundException("Dados não encontrados");
-			
-		}
+				repository.deleteById(id);
+				
+			}catch (Exception e) {
+				
+				throw new ResourceNotFoundException("Dados não encontrados");
+				
+			}
 		
 	}
 
 	
-	private void updateData(Pecas newPeca, Pecas peca) {
+	private void updateData(Pecas newPeca, Pecas pecas) {
 		
-		newPeca.setPreco(peca.getPreco());
-		newPeca.setTipo(peca.getTipo());
-		newPeca.setTamanho(peca.getTamanho());
-		newPeca.setCor(peca.getCor());
-		newPeca.setImage_url(peca.getImage_url());
+			newPeca.setPreco(pecas.getPreco());
+			newPeca.setPeca(pecas.getPeca());
+			newPeca.setCategoria(pecas.getCategoria());
+			newPeca.setDescricao(pecas.getDescricao());
+			newPeca.setTamanho(pecas.getTamanho());
+			newPeca.setCor(pecas.getCor());
+			newPeca.setImage_url(pecas.getImage_url());
 			
 	}
 	
 	
 	public void updatePeca(Long id, Pecas peca) {
 		
-		try {
-			
-			Pecas newPeca = getItemById(id);
-			
-			updateData(newPeca, peca);
-			
-			repository.save(newPeca);
-			
-		}catch (Exception e) {
-			
-			throw new ResourceNotFoundException("Dados não encontrados");
-			
-			
-		}
+			try {
+				
+				Pecas newPeca = getItemById(id);
+				
+				updateData(newPeca, peca);
+				
+				repository.save(newPeca);
+				
+			}catch (Exception e) {
+				
+				throw new ResourceNotFoundException("Dados não encontrados");
+				
+				
+			}
 		
 	}
 	

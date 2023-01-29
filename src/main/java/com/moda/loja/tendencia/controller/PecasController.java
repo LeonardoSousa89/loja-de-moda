@@ -73,7 +73,57 @@ public class PecasController {
 	}
 	
 	
-	@GetMapping(value = "/item/tamanho/busca")
+	
+	//BUSCAS POR QUERY PARAMS **
+	
+	/*
+	 * EX: 
+	 * 		http://127.0.0.1:8766/loja/item/categoria/busca?categoria=moda%20feminina&page=0
+	 * */
+	
+	@GetMapping(value = "/item/checkbox/categoria/busca")
+	public ResponseEntity<List<PecasDTO>> getItensBySearchCategory(
+			@RequestParam(value = "categoria", required = true) String categoria,
+			@RequestParam(value = "page",      required = false,  defaultValue = "0")  int page
+			) throws UnsupportedEncodingException {
+		
+		categoria = url.decodeParams(categoria);
+		
+		PageRequest pageRequest = PageRequest.of(page, 100);
+		Page<Pecas> pecas = service.getItensBySearchCategory(categoria, pageRequest);
+		
+		List<PecasDTO> pecasDTO = pecas.stream().map(peca -> new PecasDTO(peca)).collect(Collectors.toList());
+		
+		return ResponseEntity.status(HttpStatus.OK).body(pecasDTO);
+		
+	}
+	
+	
+	/*
+	 * EX: 
+	 * 		http://127.0.0.1:8766/loja/item/descricao/busca?descricao=vestido%20de%20linho&page=0
+	 * 		http://127.0.0.1:8766/loja/item/descricao/busca?descricao=vestido%20fino&page=0
+	 * */
+	
+	@GetMapping(value = "/item/checkbox/descricao/busca")
+	public ResponseEntity<List<PecasDTO>> getItensBySearchDescribe(
+			@RequestParam(value = "descricao", required = true) String descricao,
+			@RequestParam(value = "page", required = false,  defaultValue = "0") int page
+			) throws UnsupportedEncodingException {
+			
+			descricao = url.decodeParams(descricao);
+			
+			PageRequest pageRequest = PageRequest.of(page, 100);
+			Page<Pecas> pecas = service.getItensBySearchDescribe(descricao, pageRequest);
+			
+			List<PecasDTO> pecasDTO = pecas.stream().map(peca -> new PecasDTO(peca)).collect(Collectors.toList());
+			
+			return ResponseEntity.status(HttpStatus.OK).body(pecasDTO);
+		
+	}
+	
+	
+	@GetMapping(value = "/item/checkbox/tamanho/busca")
 	public ResponseEntity<List<PecasDTO>> getItensBySearchSize(
 			@RequestParam(value = "tamanho", required = true) String tamanho,
 			@RequestParam(value = "page",    required = false,  defaultValue = "0")  int page
@@ -89,7 +139,7 @@ public class PecasController {
 	}
 	
 	
-	@GetMapping(value = "/item/cor/busca")
+	@GetMapping(value = "/item/checkbox/cor/busca")
 	public ResponseEntity<List<PecasDTO>> getItensBySearchColor(
 			@RequestParam(value = "cor", required = true) String cor,
 			@RequestParam(value = "page",    required = false,  defaultValue = "0")  int page
@@ -105,44 +155,23 @@ public class PecasController {
 	}
 	
 	
-	@GetMapping(value = "/item/cor-e-tamanho/busca")
-	public ResponseEntity<List<PecasDTO>> getItensBySearchColorAndSize(
-			@RequestParam(value = "cor", required = true) String cor,
-			@RequestParam(value = "tamanho", required = true) String tamanho,
+	@GetMapping(value = "/item/barra-de-busca/peca/busca")
+	public ResponseEntity<List<PecasDTO>> getItensBySearchPiece(
+			@RequestParam(value = "peca", required = true) String peca,
 			@RequestParam(value = "page",    required = false,  defaultValue = "0")  int page
 			) {
 		
 		PageRequest pageRequest = PageRequest.of(page, 100);
-		Page<Pecas> pecas = service.getItensBySearchColorAndSize(cor, tamanho, pageRequest);
+		Page<Pecas> pecas = service.getItensBySearchPiece(peca, pageRequest);
 		
-		List<PecasDTO> pecasDTO = pecas.stream().map(peca -> new PecasDTO(peca)).collect(Collectors.toList());
+		List<PecasDTO> pecasDTO = pecas.stream().map(pecaDto -> new PecasDTO(pecaDto)).collect(Collectors.toList());
 		
 		return ResponseEntity.status(HttpStatus.OK).body(pecasDTO);
 		
 	}
 	
+	//BUSCAS POR QUERY PARAMS **
 	
-	/*
-	 * EX: 
-	 * 		http://127.0.0.1:8766/loja/item/tipo/barra-de-busca/busca?tipo=Vestido%20de%20Linho&page=0
-	 * 		http://127.0.0.1:8766/loja/item/tipo/barra-de-busca/busca?tipo=Vestido%20Fino&page=0
-	 * */
-	@GetMapping(value = "/item/tipo/barra-de-busca/busca")
-	public ResponseEntity<List<PecasDTO>> getItensBySearchType(
-			@RequestParam(value = "tipo", required = true) String tipo,
-			@RequestParam(value = "page", required = false,  defaultValue = "0") int page
-			) throws UnsupportedEncodingException {
-			
-			tipo = url.decodeParams(tipo);
-			
-			PageRequest pageRequest = PageRequest.of(page, 100);
-			Page<Pecas> pecas = service.getItensBySearchType(tipo, pageRequest);
-			
-			List<PecasDTO> pecasDTO = pecas.stream().map(peca -> new PecasDTO(peca)).collect(Collectors.toList());
-			
-			return ResponseEntity.status(HttpStatus.OK).body(pecasDTO);
-		
-	}
 	
 	
 	@DeleteMapping(value = "/deletar-todos-itens")
