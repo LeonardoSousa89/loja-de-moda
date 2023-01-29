@@ -1,5 +1,6 @@
 package com.moda.loja.tendencia.controller;
 
+import java.io.UnsupportedEncodingException;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -19,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.moda.loja.tendencia.DTO.PecasDTO;
+import com.moda.loja.tendencia.config.URL;
 import com.moda.loja.tendencia.entities.Pecas;
 import com.moda.loja.tendencia.services.PecasService;
 
@@ -29,6 +31,8 @@ public class PecasController {
 	
 	@Autowired
 	private PecasService service;
+	
+	private URL url;
 	
 	
 	@PostMapping(value = "/inserir-item")
@@ -59,12 +63,12 @@ public class PecasController {
 	
 	@GetMapping(value = "/{id}/item")
 	public ResponseEntity<PecasDTO> getItemById(@PathVariable long id) {
-		
-		Pecas peca = service.getItemById(id);
-		
-		PecasDTO pecasDTO = new PecasDTO(peca);
-		
-		return ResponseEntity.status(HttpStatus.OK).body(pecasDTO);
+			
+			Pecas peca = service.getItemById(id);
+			
+			PecasDTO pecasDTO = new PecasDTO(peca);
+			
+			return ResponseEntity.status(HttpStatus.OK).body(pecasDTO);
 		
 	}
 	
@@ -118,6 +122,29 @@ public class PecasController {
 	}
 	
 	
+	/*
+	 * EX: 
+	 * 		http://127.0.0.1:8766/loja/item/tipo/barra-de-busca/busca?tipo=Vestido%20de%20Linho&page=0
+	 * 		http://127.0.0.1:8766/loja/item/tipo/barra-de-busca/busca?tipo=Vestido%20Fino&page=0
+	 * */
+	@GetMapping(value = "/item/tipo/barra-de-busca/busca")
+	public ResponseEntity<List<PecasDTO>> getItensBySearchType(
+			@RequestParam(value = "tipo", required = true) String tipo,
+			@RequestParam(value = "page", required = false,  defaultValue = "0") int page
+			) throws UnsupportedEncodingException {
+			
+			tipo = url.decodeParams(tipo);
+			
+			PageRequest pageRequest = PageRequest.of(page, 100);
+			Page<Pecas> pecas = service.getItensBySearchType(tipo, pageRequest);
+			
+			List<PecasDTO> pecasDTO = pecas.stream().map(peca -> new PecasDTO(peca)).collect(Collectors.toList());
+			
+			return ResponseEntity.status(HttpStatus.OK).body(pecasDTO);
+		
+	}
+	
+	
 	@DeleteMapping(value = "/deletar-todos-itens")
 	public ResponseEntity<Object> deleteAll(){
 		
@@ -137,10 +164,10 @@ public class PecasController {
 	
 	
 	@PutMapping("/{id}/alterar-item")
-	public ResponseEntity<Pecas> updatePeca(@PathVariable Long id,@RequestBody Pecas peca) {
+	public ResponseEntity<Object> updatePeca(@PathVariable Long id,@RequestBody Pecas peca) {
 		
 		service.updatePeca(id, peca);
-		return ResponseEntity.status(HttpStatus.CREATED).build();
+		return ResponseEntity.status(HttpStatus.CREATED).body("Item atualizado com sucesso");
 		
 	}
 	

@@ -3,7 +3,6 @@ package com.moda.loja.tendencia.services;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
-import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.stereotype.Service;
 
 import com.moda.loja.tendencia.entities.Pecas;
@@ -19,99 +18,106 @@ public class PecasService {
 	private PecasRepository repository;
 	
 	
-	public Pecas insertItem(Pecas pecas) {
-		
-		try {
+	public void insertItem(Pecas pecas) {
 			
-			return repository.save(pecas);
-			
-		}
-		catch (Exception e) {
-			
-			throw new ResourceBadRequestException("Desculpe, Houve um erro ao processar as informações");
-			
-		}
+			repository.save(pecas);
 	
 	}
 	
 	
 	public Page<Pecas> getItens(PageRequest pageRequest) {
 		
-		try {
 			
 			Page<Pecas> pecas = repository.findAll(pageRequest);
+			
+			if(pecas.isEmpty()) {
+				
+				throw new ResourceNotFoundException("Dados não encontrados");
+				
+			}
+			
 			return pecas;
-			
-		}catch (Exception e) {
-			
-			throw new ResourceNotFoundException("Não há dados cadastrados");
-		
-		}
 	
 	}
 	
 	
 	public Pecas getItemById(long id){
-		
-		try {
 			
-			Pecas peca = repository.findById(id).get();
-			return peca;
 			
-		}catch (Exception e) {
-			
-			throw new ResourceNotFoundException("Dados não encontrados");
-			
-		}
+			try {
+				
+				Pecas peca = repository.findById(id).get();
+				
+				return peca;
+				
+			}catch(Exception e) {
+				
+				throw new ResourceNotFoundException("Dados não encontrados");
+				
+			}
 	
 	}
 	
 	
 	public Page<Pecas> getItensBySearchSize(String tamanho, PageRequest pageRequest){
 		
-		try {
 			
 			Page<Pecas> pecas = repository.getItensBySearchSize(tamanho, pageRequest);
+			
+			if(pecas.isEmpty()) {
+				
+				throw new ResourceNotFoundException("Dados não encontrados");
+				
+			}
+			
 			return pecas;
-		
-		}catch (Exception e) {
-			
-			throw new ResourceNotFoundException("Dados não encontrados");
-			
-		}
 		
 	}
 	
 	
 	public Page<Pecas> getItensBySearchColor(String cor, PageRequest pageRequest){
 		
-		try {
 			
 			Page<Pecas> pecas = repository.getItensBySearchColor(cor, pageRequest);
+			
+			if(pecas.isEmpty()) {
+				
+				throw new ResourceNotFoundException("Dados não encontrados");
+				
+			}
+			
 			return pecas;
-			
-		}catch (Exception e) {
-			
-			throw new ResourceNotFoundException("Dados não encontrados");
-		
-		}
 		
 	}
 	
 	
 	public Page<Pecas> getItensBySearchColorAndSize(String cor, String tamanho, PageRequest pageRequest){
-		
-		try {
 			
 			Page<Pecas> pecas = repository.getItensBySearchColorAndSize(cor, tamanho, pageRequest);
+			
+			if(pecas.isEmpty()) {
+				
+				throw new ResourceNotFoundException("Dados não encontrados");
+				
+			}
+			
+			return pecas;
+		
+	}
+	
+	
+	public Page<Pecas> getItensBySearchType(String tipo, PageRequest pageRequest){
+			
+			Page<Pecas> pecas = repository.getItensBySearchType(tipo, pageRequest);
+			
+			if(pecas.isEmpty()) {
+				
+				throw new ResourceNotFoundException("Dados não encontrados");
+				
+			}
+			
 			return pecas;
 			
-		}catch (Exception e) {
-			
-			throw new ResourceNotFoundException("Dados não encontrados");
-		
-		}
-		
 	}
 	
 	
@@ -156,7 +162,7 @@ public class PecasService {
 	}
 	
 	
-	public Pecas updatePeca(Long id, Pecas peca) {
+	public void updatePeca(Long id, Pecas peca) {
 		
 		try {
 			
@@ -164,7 +170,7 @@ public class PecasService {
 			
 			updateData(newPeca, peca);
 			
-			return repository.save(newPeca);
+			repository.save(newPeca);
 			
 		}catch (Exception e) {
 			
