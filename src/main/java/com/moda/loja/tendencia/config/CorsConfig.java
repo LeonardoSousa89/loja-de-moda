@@ -51,7 +51,7 @@ public class CorsConfig extends WebSecurityConfigurerAdapter {
 		
 		CorsConfiguration configuration = new CorsConfiguration().applyPermitDefaultValues();
 		
-		configuration.setAllowedOrigins(Arrays.asList("http://127.0.0.1:4200"));
+		configuration.setAllowedOrigins(Arrays.asList("http://127.0.0.1:5500", "http://127.0.0.1:4200", "http://127.0.0.1:3000"));
 		configuration.setAllowCredentials(true);
 		configuration.setAllowedMethods(Arrays.asList("POST", "GET", "PUT", "DELETE"));
 		
