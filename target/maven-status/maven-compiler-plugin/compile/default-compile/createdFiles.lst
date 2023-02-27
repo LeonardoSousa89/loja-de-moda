@@ -1,9 +1,13 @@
 com\moda\loja\tendencia\controller\PecasController.class
+com\moda\loja\tendencia\controller\ClientController.class
 com\moda\loja\tendencia\entities\Pecas.class
+com\moda\loja\tendencia\repository\ClientRepository.class
 com\moda\loja\tendencia\config\URL.class
+com\moda\loja\tendencia\services\ClientService.class
 com\moda\loja\tendencia\TendenciaApplication.class
 com\moda\loja\tendencia\config\CorsConfig.class
 com\moda\loja\tendencia\services\exceptions\ResourceBadRequestException.class
+com\moda\loja\tendencia\entities\Client.class
 com\moda\loja\tendencia\services\PecasService.class
 com\moda\loja\tendencia\controller\exceptions\ResourceExceptionHandler.class
 com\moda\loja\tendencia\controller\exceptions\StandardError.class

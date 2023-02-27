@@ -79,6 +79,16 @@
 		"tamanho": "P",
 		"cor":"branco",
 		"image_url":"https://firebasestorage.googleapis.com/v0/b/loja-de-moda-4fa2b.appspot.com/o/moda%2Fvestido%20florado%20azul%20e%20branco.jpg?alt=media&token=4b279399-ff96-43e2-8ae0-21473c091403"
-	}
+	},
+	
+		{
+		"nome": "Fernanda Santana",
+		"email": "nanda@gmsail.com"
+		},
+		
+		{
+		"nome": "Mauricia Ferraz",
+		"email": "ferraz@gmsail.com"
+		},
 	
 ]

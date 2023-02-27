@@ -26,6 +26,22 @@ INSERT INTO tendencia VALUES(1, 1027.89, 'vestido',  'moda femnina', 'vestido de
 
 DELETE FROM tendencia;
 
+
+CREATE TABLE IF NOT EXISTS tendencia_cliente(
+    id SERIAL,
+    nome VARCHAR(250) ,
+    email VARCHAR(250) NOT NULL UNIQUE
+);
+
+DROP TABLE tendencia_cliente;
+
+SELECT * FROM tendencia_cliente;
+
+INSERT INTO tendencia_cliente VALUES(1, 'Leonardo Sousa', 'leonardo@gmail.com');
+INSERT INTO tendencia_cliente VALUES(2, 'Mariana Mendes', 'mendes@gmail.com');
+
+DELETE FROM tendencia_cliente;
+
 \q
 
 
